@@ -5,6 +5,10 @@ const navigation = {
     { name: 'DevCycle', href: 'https://devcycle.com' },
     { name: 'Dashboard', href: 'https://app.devcycle.com' },
     { name: 'Blog', href: 'https://blog.devcycle.com' },
+    {
+      name: 'Privacy Policy',
+      href: 'https://devcycle.com/company/privacy-policy',
+    },
   ],
   social: [
     {
@@ -18,7 +22,7 @@ const navigation = {
     },
     {
       name: 'Discord',
-      href: 'https://discord.gg/pKK4fJgGxG',
+      href: 'https://discord.gg/8uEqSsRKy5',
       icon: () => (
         <svg
           width="24"
