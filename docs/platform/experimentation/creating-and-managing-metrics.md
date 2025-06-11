@@ -27,13 +27,19 @@ This section will contain a list of all of the Metrics on the current project, a
 Below is a brief description of each column, with deeper explanations later in this document
 
 - **Name** - The name of the Metric. This name is the human-readable format of the Metric for easily discussing the Metrics. As explained later, the `key` is what will be used within the Management API.
-- **Type** - The "Type" of Metric represents the dimension or calculation used for the Metric. It may be a simple count, or a rate, or an average. These type definitions are described below in "Creating a Metric".
-- **Event** - This is the name of the event sent by the SDKs or APIs which is being used for this Metric.
+- **Type** - The "Type" of Metric which represents the dimension or calculation used for the Metric. It may be a simple count, or a rate, or an average. These type definitions are described below in "Creating a Metric".
+- **Event Type** - This is the name of the event sent by the SDKs or APIs which is being used for this Metric.
 - **Date Modified** - Simple date explaining the last time someone made any modifications to a Metric which may have changed anything significant to the calculated results.
 
 ## Creating a Metric
 
-To create a Metric, navigate to the Metrics page as noted above, and click "Create a Metric"
+Follow the video below from our [DevCycle Experiment Setup series](/platform/experimentation/tutorial-experiment-setup#metric-setup) or read-along to find out how to create a metric on DevCycle.
+
+<div style={{marginBottom:"24px"}}>
+    https://youtu.be/7qUbt2QvhuI  
+</div>
+
+To create a Metric, navigate to the Metrics page as noted above, and click "Create a Metric".
 
 ![Image of Metrics page with arrow pointing towards create button and tab](/june-2022-metrics-section.png)
 
@@ -41,16 +47,16 @@ Metrics can also be created directly within any Feature from the Experimentation
 
 Upon clicking create, the following modal will show:
 
-![Image of empty creation modal](/june-2022-create-metric-modal.png)
+![Image of empty creation modal](/create-metric-modal.png)
 
 To set up a Metric, the following items are needed:
 
 - **Name** - This is the name of the Metric. It should be descriptive enough that any team member viewing it understands it and can both get the information necessary, and also decide if they would like to re-use the Metric for other Features.
 - **Key** - Like other DevCycle keys, this is how this Metric will be referenced in the Management API and all other non-dashboard interactions with this Metric.
 
-- **Event** - This is the **EXACT** event name that is sent by the [DevCycle Track](/sdk/features#track) methods of the SDKs or via the DevCycle APIs. This event will be used in all calculations of the Metric. How it is used specifically is described below in [How do Metrics get calculated?](/platform/experimentation/creating-and-managing-metrics#how-do-metrics-get-calculated)
+- **Event Type** - This is the **EXACT** event name that is sent by the [DevCycle Track](/sdk/features#tracking-custom-events) methods of the SDKs or via the DevCycle APIs. This event will be used in all calculations of the Metric. How it is used specifically is described below in [How do Metrics get calculated?](/platform/experimentation/creating-and-managing-metrics#how-do-metrics-get-calculated)
 
-- **"Optimize For"** - DevCycle represents Metrics as a positive or negative depending on the desired optimization. Often times, tools will always assume that an increase is beneficial. However, in most engineering applications, the opposite is true! Things such as latency, load times, server load, and processing times are Metrics that should be decreased. DevCycle will make obvious whether a Metric is improving in the desired direction, and will soon notify you if a significant impact in either direction has been made.
+- **Optimize For** - DevCycle represents Metrics as a positive or negative depending on the desired optimization. Often times, tools will always assume that an increase is beneficial. However, in most engineering applications, the opposite is true! Things such as latency, load times, server load, and processing times are Metrics that should be decreased. DevCycle will make obvious whether a Metric is improving in the desired direction, and will soon notify you if a significant impact in either direction has been made.
 
 - **Description** (optional) - A meaningful description explaining what this Metric is for and why it is being tracked. In conjunction with DevCycle's Jira Integration, this can be useful for managers to get a greater depth of information when understanding Metrics.
 
@@ -60,7 +66,7 @@ To set up a Metric, the following items are needed:
 
 When making a Metric, the types of Metrics will contain a small definition
 
-![Type Definitions](/june-2022-create-metric-descriptions.png)
+![Type Definitions](/create-metric-descriptions.png)
 
 **Count per Unique User** - This Metric type calculates the total number of times a unique user (or service) has sent this event. This can be something such as total number of clicks on a new feature, total number of API calls for a new service, total number of of views for a new advertisement, etc. This is also useful for error tracking -- A total count of specific errors is a great Metric to count when monitoring the rollout of a new release of a feature.
 
@@ -112,19 +118,23 @@ The results of this test will show the actual result which would be within a Fea
 
 Tracking metrics within a feature is an important aspect of data analysis, as it can provide valuable insights into the performance and behaviour of different features. Once a Metric has been created, it can be attached to any feature for use and analysis.
 
-Here are some steps you can follow to track metrics within a feature:
+Follow the video below from our [DevCycle Experiment Setup series](/platform/experimentation/tutorial-experiment-setup#adding-metrics-to-experiment-results) or read-along to find out how to add a metric to a Feature and view experiment results.
 
-1.  **Select the feature you want to track**: Within that feature, navigate to the `Data & Results` section of the page and click on `Experiment Results`.
+<div style={{marginBottom:"24px"}}>
+    https://youtu.be/8mzwhfW5jyw
+</div>
 
-    ![Comparative Analysis tab within a DevCycle feature's Data & Results view](/experiment-results-navigation-tab.png)
+Here are the steps you can follow to track metrics within a feature:
+
+1.  **Select the feature you want to track**: Within that feature, navigate to the `Data & Results` tab on the Feature Form of the page and click on `Experiment Results`.
 
 2.  **Choose the metric(s) associated with the feature**: Create new metrics or attach existing ones to the feature by navigating to the `Choose a Metric` dropdown.
 
-    ![Choose a Metric dropdown menu](/experiment-results-metrics-dropdown.png)
+    ![Comparative Analysis tab within a DevCycle feature's Data & Results view](/may-2025-data-results-metrics-add.png)
 
 3.  **Attach the metric(s)**: Attach the metric from the dropdown menu by selecting it. For our example, let's use the metric `Metric Testing`, which has already been setup within our project.
 
-    !["Metric Testing" metric selected from the metrics dropdown](/experiment-results-metrics-testing.png)
+    !["Metric Testing" metric selected from the metrics dropdown](/may-2025-data-results-metrics-explain.png)
 
     While the setup has some default values, the Metric requires the following fields to be filled:
 
@@ -136,8 +146,6 @@ Here are some steps you can follow to track metrics within a feature:
 
 4.  **Calculate results**: Once one or more metrics have been selected, we can then run the metric calculation to generate insight into how the feature is doing.
 
-    ![Feature metrics ready to be calcuated](/experiment-results-metrics-calculate.png)
-
 5. **View your results**: Once calculated, if there is available data for the Feature, the results data will populate within the dashboard.
 
     ![Calculation results](/feature-experiment-full-results.png)
@@ -146,7 +154,7 @@ Here are some steps you can follow to track metrics within a feature:
 
 ### How do Metrics get calculated?
 
-To calculate Metrics, DevCycle uses [the custom events sent via its API or SDKs](/sdk/features#track). Each Event has the information of which user sent it and which Feature and Variation they were in at that time. For optimal experiments, use Features with variations [randomly distributed across users](/platform/feature-flags/targeting/random-variations).
+To calculate Metrics, DevCycle uses [the custom events sent via its API or SDKs](/sdk/features#tracking-custom-events). Each Event has the information of which user sent it and which Feature and Variation they were in at that time. For optimal experiments, use Features with variations [randomly distributed across users](/platform/feature-flags/targeting/random-variations).
 
 To read more on the queries behind the Metrics, see [How Metrics Are Calculated](/platform/experimentation/how-metrics-are-calculated)
 

@@ -20,7 +20,7 @@ To use these providers, you must grab the SDK Key from the DevCycle Dashboard.
 You can optionally pass in a user object to the provider to initialize the SDK.
 If you do not pass in a user to the provider, it will create an anonymous user and initialize the SDK with it.
 You can then call the `identifyUser` method on the client once the user has been authenticated.
-See [Identifying Users & Setting Properties](/sdk/features#identify) for more details.
+See [Identifying Users](/sdk/features#identifying-a-user-or-setting-properties) for more details.
 
 ## Non-Blocking
 
@@ -89,7 +89,7 @@ The SDK exposes various initialization options which can be set by passing a `De
 | flushEventQueueSize          | Number                                                                                                        | Controls the maximum size the event queue can grow to until a flush is forced. Defaults to `100`.              |
 | maxEventQueueSize            | Number                                                                                                        | Controls the maximum size the event queue can grow to until events are dropped. Defaults to `1000`.            |
 | apiProxyURL                  | String                                                                                                        | Allows the SDK to communicate with a proxy of DevCycle bucketing API / client SDK API.                         |
-| configCacheTTL               | Number                                                                                                        | The maximum allowed age of a cached config in milliseconds, defaults to 7 days                                 |
+| configCacheTTL               | Number                                                                                                        | The maximum allowed age of a cached config in milliseconds, defaults to 30 days                                 |
 | disableConfigCache           | Boolean                                                                                                       | Disable the use of cached configs                                                                              |
 | disableRealtimeUpdates       | Boolean                                                                                                       | Disable Realtime Updates                                                                                       |
 | disableAutomaticEventLogging | Boolean                                                                                                       | Disables logging of sdk generated events (e.g. variableEvaluated, variableDefaulted) to DevCycle.              |

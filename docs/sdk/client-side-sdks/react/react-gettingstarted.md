@@ -19,11 +19,11 @@ To use the provider, you must get the SDK Key from the DevCycle Dashboard.
 You can optionally pass in a user object to the provider to initialize the SDK.
 If you do not pass in a user to the provider, it will create an anonymous user and initialize the SDK with it.
 You can then call the `identifyUser` method on the client once the user has been authenticated.
-See [Identifying Users & Setting Properties](/sdk/features#identify) for more details.
+See [Identifying Users & Setting Properties](/sdk/features#identifying-a-user-or-setting-properties) for more details.
 
 :::info
 
-It’s best to initialize DevCycle in your root component (App.jsx or App.tsx), so that its hooks can be accessed from anywhere within your application.
+It's best to initialize DevCycle in your root component (App.jsx or App.tsx), so that its hooks can be accessed from anywhere within your application.
 
 :::
 
@@ -140,7 +140,7 @@ The SDK exposes various initialization options which can be set by passing a `De
 | flushEventQueueSize          | Number                                                                                                        | Controls the maximum size the event queue can grow to until a flush is forced. Defaults to `100`.              |
 | maxEventQueueSize            | Number                                                                                                        | Controls the maximum size the event queue can grow to until events are dropped. Defaults to `1000`.            |
 | apiProxyURL                  | String                                                                                                        | Allows the SDK to communicate with a proxy of DevCycle bucketing API / client SDK API.                         |
-| configCacheTTL               | Number                                                                                                        | The maximum allowed age of a cached config in milliseconds, defaults to 7 days                                 |
+| configCacheTTL               | Number                                                                                                        | The maximum allowed age of a cached config in milliseconds, defaults to 30 days                                 |
 | disableConfigCache           | Boolean                                                                                                       | Disable the use of cached configs                                                                              |
 | disableRealtimeUpdates       | Boolean                                                                                                       | Disable Realtime Updates                                                                                       |
 | deferInitialization          | Boolean                                                                                                       | Defer initialization (fetching configuration from DevCycle) until user is identified with `identifyUser` call  |

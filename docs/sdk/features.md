@@ -122,15 +122,19 @@ The response is the following general format, with slight changes depending on t
 ```json
 {
   "your-cool-feature": {
-    "_id": "123456",
     "key": "your-cool-feature",
     "type": "release",
+    "variationKey": "variation-on",
+    "variationName": "Variation On",
+    "_id": "123456",
     "_variation": "333345"
   },
   "another-feature": {
-    "_id": "123456",
     "key": "another-feature",
     "type": "ops",
+    "variationKey": "enabled",
+    "variationName": "Enabled",
+    "_id": "123456",
     "_variation": "444123"
   }
 }
@@ -232,9 +236,7 @@ identity must be changed during the application's lifecycle.
 
 :::info
 
-If a user id is not supplied, client-side SDKs will automatically generate a user id and assign it to the current user.
-This id will be cached and used between app sessions / website visits until a user id is supplied or [reset](#reset-user) is
-called. This will ensure you will not experience a rise in MAUs if the main experience of your application is in a logged-out or anonymous state.
+If a user id is not supplied, client-side SDKs will automatically generate a user id and assign it to the current user. This id will be cached and used between app sessions / website visits until a user id is supplied or [reset](#resetting-a-user) is called. This ensures that you will not experience a rise in MAUs if the main experience of your application is in a logged-out or anonymous state.
 
 :::
 
@@ -260,7 +262,7 @@ It is then discarded and no record is saved anywhere.
 With regular Custom Data, the data used for evaluation purposes is logged back to DevCycle's events database where
 it can be used for debugging purposes or providing guidance on evaluation reasons.
 
-#### Server-Side SDK Identification
+### Server-Side SDK Identification
 
 Unlike the Client-Side SDKs, Server-Side SDKs work in a multi-user context.
 Because of this, a single Identify function does not make sense.
@@ -286,8 +288,20 @@ stored DevCycle configuration, and no network calls will be made.
 
 ## Tracking Custom Events
 
-The Track function in the DevCycle SDKs allows you to send custom events which can later be used for your own data analysis on enabled Features,
-and metrics on A/B tests and experiments within the DevCycle dashboard.
+The Track function in the DevCycle SDKs allows you to send custom events which can be used for your own data analysis on enabled Features, and [Metrics](/platform/experimentation/creating-and-managing-metrics) on A/B tests and experiments within the DevCycle dashboard. Here is an example of a custom event request and properties that an event may contain.
+
+```javascript
+event = {
+  type: 'button_clicked', // required field
+  date: new Date(),
+  target: 'my_target',
+  value: 5,
+  metaData: {
+    key: 'value',
+  },
+}
+devcycleClient.track(event)
+```
 
 ## Custom Domains
 

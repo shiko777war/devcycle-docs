@@ -5,13 +5,11 @@ sidebar_position: 2
 
 The Audit Log tracks all modifications made to a Feature. DevCycle captures the DevCycle user who made the change, a time stamp, and what was modified on each Feature save.
 
-The Audit Log is located at the bottom of the Feature form in the Data & Results section.
+The Audit Log is located on the **Audit Log tab** on every Feature Form. 
 
-![Audit Log on Feature Page](/nov2023-audit-log-sidebar.png)
+![Audit Log Tab on Feature Page](/may-2025-feature-audit-log-tab.png)
 
 You can filter modfications by environment, DevCycle user, and for a particular date range.
-
-![Audit Log](/nov2023-audit-log-summary.png)
 
 :::info
 
@@ -23,7 +21,7 @@ The title of each modification card highlights the change that was made to the F
 
 Click the `View Details` button on each card for more information about each modification.
 
-Modifications are organized by Environment with each card. The color of each Environment tag corresponds to the [color selected for that Environment](/platform/account-management/environments#from-the-dashboard-1).
+Modifications are organized by Environment with each card. The color of each Environment tag corresponds to the [color selected for that Environment](/platform/account-management/environments#creating-a-new-environment).
 
 Items that are added to the Feature will be highlighted in green in the left-hand column of the modification card (see below), and removals or deletions of items will be highlighted in red.
 
