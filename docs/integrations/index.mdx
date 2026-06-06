@@ -34,6 +34,53 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
   </div>
 </details>
 
+## Observability
+
+<CustomDocCardList
+  items={[
+    {
+      type: 'link',
+      href: '/integrations/dynatrace',
+      label: 'Dynatrace',
+      description:
+        'Monitor and analyze your feature flags with Dynatrace observability platform.',
+      icon: '',
+      customIconPath: '/integrations/dynatrace/dynatrace-icon.svg',
+    },
+    {
+      type: 'link',
+      href: '/integrations/opentelemetry',
+      label: 'OpenTelemetry',
+      description: 'Monitor and analyze your feature flags with OpenTelemetry.',
+      icon: '',
+      customIconPath: '/integrations/opentelemetry/otel-icon.svg',
+    },
+    {
+      type: 'link',
+      href: '/integrations/snowflake',
+      label: 'Snowflake Data Sharing',
+      description: "Access your Organization's Event data on Snowflake",
+      icon: 'material-symbols:database-outline',
+    },
+    {
+      type: 'link',
+      href: '/integrations/google-analytics-4',
+      label: 'Google Analytics',
+      description:
+        'Send DevCycle Feature/Variation data from Tag Manager to Google Analytics 4 for A/B test analysis',
+      icon: 'mdi:analytics',
+    },
+    {
+      type: 'link',
+      href: '/integrations/rollbar',
+      label: 'Rollbar',
+      description:
+        'Enhance error logging with DevCycle Feature and Variable data',
+      icon: 'mdi:analytics',
+    }
+  ]}
+/>
+
 ## IDE Plugins
 
 <CustomDocCardList
@@ -55,7 +102,7 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
     {
       type: 'link',
       href: '/integrations/openfeature',
-      label: 'Open Feature',
+      label: 'OpenFeature',
       description: 'Use DevCycle with the OpenFeature Flagging Standard.',
       icon: 'material-symbols:toggle-on',
     },
@@ -64,7 +111,7 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
       href: '/integrations/feature-importer',
       description: 'Import resources from other feature flag providers. ',
       label: 'Feature Flag Importer',
-      icon: 'logos:launchdarkly-icon',
+      icon: 'tabler:flag-filled',
     },
     {
       type: 'link',
@@ -76,14 +123,16 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
     {
       type: 'link',
       href: '/integrations/vercel-edge-config',
-      description: 'Upload DevCycle configurations to Vercel Edge Config for faster retrieval',
+      description:
+        'Upload DevCycle configurations to Vercel Edge Config for faster retrieval',
       label: 'Vercel Edge Config',
-      icon: 'logos:vercel-icon',
+      icon: 'ant-design:code-outlined',
     },
   ]}
 />
 
 ## Code Analysis
+
 <CustomDocCardList
   items={[
     {
@@ -91,43 +140,29 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
       href: '/integrations/github/feature-usage-action',
       description: 'Display code snippets for each variable used in a project.',
       label: 'GitHub: Flag Code Usages',
-      icon: 'simple-icons:github',
+      icon: 'mdi:analytics',
     },
     {
       type: 'link',
       href: '/integrations/github/pr-insights-action',
       label: 'GitHub: Flag Change Insights',
       description: 'Display added/removed flags on each Pull Request.',
-      icon: 'simple-icons:github',
-    },
-    {
-      type: 'link',
-      href: '/integrations/bitbucket/feature-usage-action',
-      description: 'Display code snippets for each variable used in a project.',
-      label: 'Bitbucket: Flag Code Usages',
-      icon: 'simple-icons:bitbucket',
-    },
-    {
-      type: 'link',
-      href: '/integrations/bitbucket/pr-insights-action',
-      description: 'Display added/removed flags on each Pull Request.',
-      label: 'Bitbucket: Flag Change Insights',
-      icon: 'simple-icons:bitbucket',
+      icon: 'fluent-mdl2:insights',
     },
     {
       type: 'link',
       href: '/integrations/gitlab/feature-usage-action',
       description: 'Display code snippets for each variable used in a project.',
       label: 'GitLab: Flag Code Usages',
-      icon: 'simple-icons:gitlab',
+      icon: 'mdi:analytics',
     },
     {
       type: 'link',
       href: '/integrations/gitlab/pr-insights-action',
       description: 'Display added/removed flags on each Merge Request.',
       label: 'GitLab: Flag Change Insights',
-      icon: 'simple-icons:gitlab',
-    }
+      icon: 'fluent-mdl2:insights',
+    },
   ]}
 />
 
@@ -139,8 +174,9 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
       type: 'link',
       href: '/integrations/slack',
       label: 'Slack',
-      description: 'Connect DevCycle to your Slack workspace to track Feature updates.',
-      icon: 'akar-icons:slack-fill',
+      description:
+        'Connect DevCycle to your Slack workspace to track Feature updates.',
+      icon: 'material-symbols:chat-outline-rounded',
     },
   ]}
 />
@@ -152,60 +188,15 @@ DevCycle APIs, as well as third party integrations to connect DevCycle to the to
       type: 'link',
       href: '/integrations/jira',
       label: 'Jira: Flag Management',
-      description: 'Link Jira tickets directly to DecCycle features',
-      icon: 'simple-icons:jira',
+      description: 'Link Jira tickets directly to DevCycle features',
+      icon: 'tabler:flag-filled',
     },
     {
       type: 'link',
       href: '/integrations/terraform',
       label: 'Terraform Provider',
       description: 'Manage projects, features and more with Terraform',
-      icon: 'simple-icons:terraform',
+      icon: 'ant-design:code-outlined',
     },
-  ]}
-/>
-
-## Observability
-
-<CustomDocCardList
-  items={[
-    {
-      type: 'link',
-      href: '/integrations/datadog-rum',
-      label: 'DataDog RUM Feature Tracking',
-      description: 'Associate served feature flags with RUM sessions',
-      icon: 'simple-icons:datadog',
-    },
-    {
-      type: 'link',
-      href: '/integrations/datadog-apm',
-      label: 'DataDog APM Feature Tracking',
-      description: 'Associate served feature flags with APM logs and metrics',
-      icon: 'simple-icons:datadog',
-    },
-    {
-      type: 'link',
-      href: '/integrations/snowflake',
-      label: 'Snowflake Data Sharing',
-      description: "Access your Organziation's Event data on Snowflake",
-      icon: 'simple-icons:snowflake',
-    },
-    {
-      type: 'link',
-      href: '/integrations/google-analytics-4',
-      label: 'Google Analytics',
-      description:
-        'Send DevCycle Feature/Variation data from Tag Manager to Google Analytics 4 for A/B test analysis',
-      icon: 'simple-icons:googleanalytics',
-    },
-    {
-      type: 'link',
-      href: '/integrations/rollbar',
-      label: 'Rollbar',
-      description:
-        'Enhance error logging with DevCycle Feature and Variable data',
-      icon: '',
-      customIconPath: '/integrations/rollbar/rollbar-icon.svg'
-    }
   ]}
 />

@@ -8,6 +8,16 @@ sidebar_custom_props: { icon: material-symbols:toggle-off }
 
 # OpenFeature Provider
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/go-openfeature.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 OpenFeature is an open standard that provides a vendor-agnostic, community-driven API for feature flagging that works with DevCycle.
 
 DevCycle provides a Go implementation of the [OpenFeature](https://openfeature.dev/) Provider interface, if you prefer to use the OpenFeature API.
@@ -18,18 +28,18 @@ DevCycle provides a Go implementation of the [OpenFeature](https://openfeature.d
 
 ### Installation
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 Install the OpenFeature Go SDK and DevCycle Provider:
 
 ```bash
 go get "github.com/devcyclehq/go-server-sdk/v2"
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 ### Getting Started
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 Initialize the DevCycle SDK and set the DevCycleProvider as the provider for OpenFeature:
 
@@ -69,12 +79,12 @@ func main() {
 	client := openfeature.NewClient("devcycle")
 }
 ```
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ### Evaluate a Variable
 Use a Variable value by passing the Variable key, default value, and EvaluationContext to one of the OpenFeature flag evaluation methods
 
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 ```go
 	evalCtx := openfeature.NewEvaluationContext("user_id", map[string]interface{}{})
@@ -82,11 +92,11 @@ Use a Variable value by passing the Variable key, default value, and EvaluationC
 
 	log.Printf("The boolean variable value is: %v", booleanVar)
 ```
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 ### Required TargetingKey
 
-For the DevCycle SDK to work we require either a `targetingKey` or `user_id` to be set on the OpenFeature context.
+The DevCycle provider requires either a `targetingKey` or `user_id` to be set on the OpenFeature context.
 This is used to identify the user as the `UserId` for a `devcycle.User` in DevCycle.
 
 ### Context properties to User

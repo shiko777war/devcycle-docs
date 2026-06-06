@@ -9,7 +9,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 [![Pub](https://img.shields.io/pub/v/devcycle_flutter_client_sdk)](https://img.shields.io/pub/v/devcycle_flutter_client_sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/flutter-client-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/flutter-client-sdk)
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 ## Initializing the SDK
 
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
     ...
 }
 ```
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 The user object may specify a `userId` for a given User. If the `userId` is not specified, the User is considered to be anonymous.
 
@@ -70,16 +70,20 @@ The DevCycleUser can be built using the following methods:
 
 [DevCycleUserBuilder class](https://github.com/DevCycleHQ/flutter-client-sdk/blob/main/lib/devcycle_user.dart#L43)
 
-| Method            | Parameter     | Description                                                                                                     |
-| ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
-| userId            | String        | Unique user ID                                                                                                  |
-| isAnonymous       | Bool          | Boolean to indicate if the user is anonymous                                                                    |
-| email             | String        | User's email                                                                                                    |
-| name              | String        | User's name                                                                                                     |
-| language          | String        | User's language                                                                                                 |
-| country           | String        | User's country                                                                                                  |
-| customData        | [String: Any] | Key/value map of properties to be used for targeting                                                            |
-| privateCustomData | [String: Any] | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. |
+| Method            | Parameter     | Description                                                                                                     | Auto-Populated |
+| ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | -------------- |
+| userId            | String        | Unique user ID                                                                                                  | No             |
+| isAnonymous       | Bool          | Boolean to indicate if the user is anonymous                                                                    | No             |
+| email             | String        | User's email                                                                                                    | No             |
+| name              | String        | User's name                                                                                                     | No             |
+| language          | String        | User's language                                                                                                 | No             |
+| country           | String        | User's country                                                                                                  | No             |
+| appVersion        | String        | App version                                                                                                     | Yes            |
+| customData        | [String: Any] | Key/value map of properties to be used for targeting                                                            | No             |
+| privateCustomData | [String: Any] | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. | No             |
+| platform          | String        | Platform/OS                                                                                                     | Yes            |
+| platformVersion   | String        | Platform/OS Version                                                                                             | Yes            |
+| deviceModel       | String        | Device Machine Code or Build Model                                                                              | Yes            |
 
 ## DevCycleOptions Builder
 

@@ -8,6 +8,16 @@ sidebar_custom_props: { icon: material-symbols:toggle-off }
 
 # OpenFeature Provider
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/dotnet-openfeature.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 OpenFeature is an open standard that provides a vendor-agnostic, community-driven API for feature flagging that works with DevCycle.
 
 DevCycle provides a C# implementation of the [OpenFeature](https://openfeature.dev/) Provider interface, if you prefer to use the OpenFeature API.
@@ -20,7 +30,7 @@ The OpenFeature Provider is included in the DevCycle SDK for .NET / C# natively.
 
 ## Local Bucketing
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 Use the following command to install the NuGet package:
 ```bash
@@ -33,7 +43,7 @@ and use the namespaces:
 
 `using DevCycle.SDK.Server.Local.Api;`
 
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 ## Cloud Bucketing
 
@@ -50,7 +60,7 @@ and use the namespaces:
 `using DevCycle.SDK.Server.Common.Model;`
 
 ### Getting Started
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 Initialize the DevCycle SDK and set the DevCycleProvider as the provider for OpenFeature:
 
@@ -81,22 +91,22 @@ EvaluationContext ctx = EvaluationContext.Builder()
     .Set("nonSetValueBubbledCustomData4", new Value((object)null))
     .Build();
 ```
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ### Evaluate a Variable
 Use a Variable value by passing the Variable key, default value, and EvaluationContext to one of the OpenFeature flag evaluation methods
 
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 ```csharp
 var variableResult = await oFeatureClient.GetStringDetails(readOnlyVariable.Key, "default", ctx);
 ```
 
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 ### Required TargetingKey
 
-For DevCycle SDK to work we require either a `targetingKey` or `user_id` to be set on the OpenFeature context.
+The DevCycle provider requires either a `targetingKey` or `user_id` to be set on the OpenFeature context.
 This is used to identify the user as the `user_id` for a `DevCycleUser` in DevCycle.
 
 ### Context properties to DevCycleUser

@@ -9,6 +9,16 @@ sidebar_custom_props: { icon: material-symbols:install-desktop }
 [![Maven](https://badgen.net/maven/v/maven-central/com.devcycle/java-server-sdk)](https://search.maven.org/artifact/com.devcycle/java-server-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/java-server-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/DevCycleHQ/java-server-sdk)
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/java.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 ## Requirements
 
 This version of the DevCycle SDK works with Java 11 and above.
@@ -37,7 +47,13 @@ ldd --version
 
 :::
 
-[//]: # (wizard-install-start)
+:::warning
+
+The Java SDK on Local Bucketing mode uses the [wasmtime-java](https://github.com/kawamuray/wasmtime-java) binding, which does not work with Docker Alpine images at this time. If working with Docker, use a non-Alpine Linux image for Local Bucketing or use Cloud Bucketing mode.
+
+:::
+
+[//]: # 'wizard-install-start'
 
 ### Maven
 
@@ -65,7 +81,7 @@ Alternatively you can use the SDK in your Gradle project by adding the following
 ```yaml
 implementation("com.devcycle:java-server-sdk:+")
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 ## DNS Caching
 

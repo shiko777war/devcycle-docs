@@ -9,7 +9,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 [![Npm package version](https://badgen.net/npm/v/@devcycle/js-client-sdk)](https://www.npmjs.com/package/@devcycle/js-client-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/js-sdks.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/js-sdks)
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 - If the JS SDK is installed using NPM, call `initializeDevCycle` with your client key, a user object, and an optional options object.
 - Otherwise, If you're using the CDN to install the JS SDK, call `DevCycle.initializeDevCycle` with your client key, a user object, and an optional options object.
@@ -29,16 +29,16 @@ const devcycleClient = initializeDevCycle(
 )
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ## Deferred Initialization
 
-In many cases, user data is not available at the time of initialization. If the intialization call is made without a
+In many cases, user data is not available at the time of initialization. If the initialization call is made without a
 `user` object, then by default the SDK will be instantiated with an "anonymous" user and a configuration will be
 downloaded from DevCycle. The SDK makes a call to get the configuration for anonymous user and initializes.
 
 If you would like to defer initialization of the SDK until your user data is available, you can pass the
-`deferInitialization` option to the `intializeDevCycle` method. This will cause the SDK to not fetch a configuration until the
+`deferInitialization` option to the `initializeDevCycle` method. This will cause the SDK to not fetch a configuration until the
 [`devcycleClient.identifyUser`](/sdk/client-side-sdks/javascript/javascript-usage#identifying-user) method is called with the user data.
 Until that config is retrieved, all calls
 to retrieve variable values will return their default values.
@@ -56,18 +56,21 @@ const devcycleClient = initializeDevCycle(
 
 [DevCycleUser Typescript Schema](https://github.com/search?q=repo%3ADevCycleHQ%2Fjs-sdks+export+interface+DevCycleUser+language%3ATypeScript+path%3A*types.ts&type=code)
 
-| Property          | Type    | Description                                                                                                     |
-| ----------------- | ------- | --------------------------------------------------------------------------------------------------------------- |
-| isAnonymous       | Boolean | Boolean to indicate if the user is anonymous                                                                    |
-| user_id           | String  | Unique user ID                                                                                                  |
-| email             | String  | User's email                                                                                                    |
-| name              | String  | User's name                                                                                                     |
-| language          | String  | User's language                                                                                                 |
-| country           | String  | User's country                                                                                                  |
-| appVersion        | String  | App version                                                                                                     |
-| appBuild          | Number  | App build                                                                                                       |
-| customData        | DVCJSON | Key/value map of properties to be used for targeting                                                            |
-| privateCustomData | DVCJSON | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. |
+| Property          | Type    | Description                                                                                                     | Auto-Populated |
+| ----------------- | ------- | --------------------------------------------------------------------------------------------------------------- | -------------- |
+| isAnonymous       | Boolean | Boolean to indicate if the user is anonymous. Automatically `true` if user_id is not provided.                  | -              |
+| user_id           | String  | Unique user ID                                                                                                  | No             |
+| email             | String  | User's email                                                                                                    | No             |
+| name              | String  | User's name                                                                                                     | No             |
+| language          | String  | User's language                                                                                                 | No             |
+| country           | String  | User's country                                                                                                  | No             |
+| appVersion        | String  | App version                                                                                                     | No             |
+| appBuild          | Number  | App build                                                                                                       | No             |
+| customData        | DVCJSON | Key/value map of properties to be used for targeting                                                            | No             |
+| privateCustomData | DVCJSON | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. | No             |
+| platform          | String  | Platform/OS                                                                                                     | Yes            |
+| platformVersion   | String  | Platform/OS Version                                                                                             | Yes            |
+| deviceModel       | String  | User Agent                                                                                                      | Yes            |
 
 ## Initialization Options
 

@@ -11,7 +11,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/ios-client-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/ios-client-sdk)
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 ## Initializing the SDK
 
@@ -54,7 +54,7 @@ let user = try DevCycleUser.builder()
                     .build()
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ### Objective-C
 
@@ -100,16 +100,20 @@ The DevCycleUser can be built using the following methods:
 
 [DevCycleUserBuilder class](https://github.com/DevCycleHQ/ios-client-sdk/blob/main/DevCycle/DevCycleUser.swift#L21)
 
-| Method            | Parameter     | Description                                                                                                     |
-| ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
-| userId            | String        | Unique user ID                                                                                                  |
-| isAnonymous       | Bool          | Boolean to indicate if the user is anonymous                                                                    |
-| email             | String        | User's email                                                                                                    |
-| name              | String        | User's name                                                                                                     |
-| language          | String        | User's language                                                                                                 |
-| country           | String        | User's country                                                                                                  |
-| customData        | [String: Any] | Key/value map of properties to be used for targeting                                                            |
-| privateCustomData | [String: Any] | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. |
+| Method            | Parameter     | Description                                                                                                     | Auto-Populated |
+| ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | -------------- |
+| userId            | String        | Unique user ID                                                                                                  | No             |
+| isAnonymous       | Bool          | Boolean to indicate if the user is anonymous                                                                    | No             |
+| email             | String        | User's email                                                                                                    | No             |
+| name              | String        | User's name                                                                                                     | No             |
+| language          | String        | User's language                                                                                                 | No             |
+| country           | String        | User's country                                                                                                  | No             |
+| appVersion        | String        | App version                                                                                                     | Yes            |
+| customData        | [String: Any] | Key/value map of properties to be used for targeting                                                            | No             |
+| privateCustomData | [String: Any] | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. | No             |
+| platform          | String        | Platform/OS                                                                                                     | Yes            |
+| platformVersion   | String        | Platform/OS Version                                                                                             | Yes            |
+| deviceModel       | String        | Device Machine Code (ex: iPhone1,1, iPad15,8)                                                                   | Yes            |
 
 ## DevCycleOptions Builder
 
@@ -119,7 +123,7 @@ The SDK exposes various initialization options which can be used by passing a `D
 
 | Method                       | Parameter | Default   | Description                                                                                                    |
 | ---------------------------- | --------- | --------- | -------------------------------------------------------------------------------------------------------------- |
-| flushEventsIntervalMs        | Int       | 10000     | Controls the interval between flushing events to the DevCycle servers in milliseconds, defaults to 10 seconds. |
+| eventFlushIntervalMS         | Int       | 10000     | Controls the interval between flushing events to the DevCycle servers in milliseconds, defaults to 10 seconds. |
 | disableCustomEventLogging    | Boolean   | false     | Disables logging of custom events generated by calling `.track()` method to DevCycle.                          |
 | disableAutomaticEventLogging | Boolean   | false     | Disables logging of SDK generated events (e.g. variableEvaluated, variableDefaulted) to DevCycle.              |
 | logLevel                     | LogLevel  | error     | Set log level of the default logger. Defaults to `error`                                                       |

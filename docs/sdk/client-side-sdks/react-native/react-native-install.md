@@ -9,13 +9,23 @@ sidebar_custom_props: { icon: material-symbols:install-desktop }
 [![React-Native package version](https://badgen.net/npm/v/@devcycle/react-native-client-sdk)](https://www.npmjs.com/package/@devcycle/react-native-client-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/js-sdks.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/js-sdks)
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/react-native.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 To get started, install the React Native SDK. For React Native Expo, see the [Expo SDK Installation](/sdk/client-side-sdks/react-native/react-native-expo-install) guide.
 
 ## Installation
 
 The command to install the React Native SDK is:
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 ### npm
 
@@ -23,7 +33,7 @@ The command to install the React Native SDK is:
 npm install --save @devcycle/react-native-client-sdk
 ```
 
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 ### yarn
 
@@ -60,7 +70,7 @@ The [react-native-get-random-values](https://www.npmjs.com/package/react-native-
 The [react-native-device-info](https://www.npmjs.com/package/react-native-device-info) package provides information about the current device running the SDK, which is required to correctly apply targeting rules.
 The [react-native-sse](https://www.npmjs.com/package/react-native-sse) package provides SSE connection functionality to enable real-time updates.
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 ## Import SDK Dependencies
 
@@ -90,7 +100,7 @@ export default withDevCycleProvider({ sdkKey: '<DEVCYCLE_CLIENT_SDK_KEY>' })(
 )
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ## Example
 

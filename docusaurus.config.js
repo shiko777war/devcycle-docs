@@ -49,9 +49,11 @@ const YouTubeTransformer = {
  * Pinned version of the CLI to use for docs
  * When bumping the version, add any new commands to the documents array
  */
-const DVC_CLI_VERSION = 'v5.20.2' // auto updated by dvc cli release workflow
+const DVC_CLI_VERSION = 'v6.3.0' // auto updated by dvc cli release workflow
 
 const VSCODE_EXTENSION_VERSION = 'v1.4.10' // auto updated by extension release workflow
+
+const AI_PROMPTS_VERSION = 'main' // AI prompts repository branch
 
 const removeDocsSections = (content, sectionNames, headerIdentifier = '##') => {
   let result = content
@@ -97,7 +99,6 @@ const config = {
       }
     },
     path.resolve(__dirname, 'plugins', 'custom-gtm'),
-    path.resolve(__dirname, 'plugins', 'custom-beamer'),
     [
       'docusaurus-plugin-remote-content',
       {
@@ -118,6 +119,7 @@ const config = {
           'docs/keys.md',
           'docs/login.md',
           'docs/logout.md',
+          'docs/mcp.md',
           'docs/organizations.md',
           'docs/overrides.md',
           'docs/projects.md',
@@ -127,6 +129,7 @@ const config = {
           'docs/usages.md',
           'docs/variables.md',
           'docs/variations.md',
+          'mcp-worker/README.md',
         ],
         performCleanup: true,
         modifyContent: (filename, content) => {
@@ -204,40 +207,6 @@ const config = {
     [
       'docusaurus-plugin-remote-content',
       {
-        name: 'bitbucket.feature-usage-action',
-        sourceBaseUrl:
-          'https://bitbucket.org/devcyclehq/devcycle-code-refs-pipe/raw/main/',
-        outDir: 'docs/integrations/bitbucket/feature-usage-action',
-        documents: ['README.md'],
-        performCleanup: true,
-        modifyContent: (filename, content) => ({
-          content:
-            '# Bitbucket: Feature Flag Code Usages\n' +
-            'Get the integration on the [Bitbucket Marketplace](https://bitbucket.org/product/features/pipelines/integrations?&p=devcyclehq/devcycle-code-refs-pipe)\n' +
-            content,
-        }),
-      },
-    ],
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        name: 'bitbucket.pr-insights-action',
-        sourceBaseUrl:
-          'https://bitbucket.org/devcyclehq/devcycle-pr-insights-pipe/raw/main/',
-        outDir: 'docs/integrations/bitbucket/pr-insights-action',
-        documents: ['README.md'],
-        performCleanup: true,
-        modifyContent: (filename, content) => ({
-          content:
-            '# Bitbucket: Feature Flag Change Insights on Pull Request\n' +
-            'Get the integration on the [Bitbucket Marketplace](https://bitbucket.org/product/features/pipelines/integrations?&p=devcyclehq/devcycle-pr-insights-pipe)\n' +
-            content,
-        }),
-      },
-    ],
-    [
-      'docusaurus-plugin-remote-content',
-      {
         name: 'gitlab.feature-usage-action',
         sourceBaseUrl:
           'https://gitlab.com/devcycle/devcycle-usages-ci-cd/-/raw/main/',
@@ -267,6 +236,47 @@ const config = {
             'Get the integration here: https://gitlab.com/devcycle/devcycle-pr-insights-ci-cd\n' +
             content,
         }),
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        name: 'ai-prompts',
+        sourceBaseUrl: `https://raw.githubusercontent.com/DevCycleHQ/AI-Prompts-And-Rules/${AI_PROMPTS_VERSION}/install-prompts/`,
+        // Output into static so we can import via raw-loader and not compile as docs
+        outDir: 'static/ai-prompts',
+        documents: [
+          'android-openfeature.md',
+          'android.md',
+          'angular.md',
+          'dotnet-openfeature.md',
+          'dotnet.md',
+          'flutter.md',
+          'go-openfeature.md',
+          'go.md',
+          'ios-openfeature.md',
+          'ios.md',
+          'java-openfeature.md',
+          'java.md',
+          'javascript-openfeature.md',
+          'javascript.md',
+          'nestjs-openfeature.md',
+          'nestjs.md',
+          'nextjs.md',
+          'nodejs-openfeature.md',
+          'nodejs.md',
+          'php-openfeature.md',
+          'php.md',
+          'python-openfeature.md',
+          'python.md',
+          'react-native.md',
+          'react-openfeature.md',
+          'react.md',
+          'roku.md',
+          'ruby-openfeature.md',
+          'ruby.md',
+        ],
+        performCleanup: true,
       },
     ],
   ],
@@ -306,12 +316,12 @@ const config = {
         specs: [
           {
             id: 'management-api',
-            spec: 'https://api.devcycle.com/swagger.json',
+            spec: 'https://api.devcycle.com/openapi.json',
             route: '/management-api/',
           },
           {
             id: 'bucketing-api',
-            spec: 'bucketing-api.yaml',
+            spec: 'https://bucketing-api.devcycle.com/openapi.yaml',
             route: '/bucketing-api/',
           },
         ],
@@ -333,7 +343,9 @@ const config = {
     },
     DEVCYCLE_CLIENT_SDK_KEY: process.env.DEVCYCLE_CLIENT_SDK_KEY,
   },
-  url: process.env.CF_PAGES ? 'https://docs.devcycle.com' : 'http://localhost:3000',
+  url: process.env.CF_PAGES
+    ? 'https://docs.devcycle.com'
+    : 'http://localhost:3000',
   baseUrl: '/',
   favicon: 'devcycle_favicon.svg',
   scripts: [
@@ -377,9 +389,9 @@ const config = {
       ],
     },
     algolia: {
-      appId: '6TW93YPS4X',
-      apiKey: '2a9dbde35586f5ae29571b19dacc71c6', // Public API key: it is safe to commit it
-      indexName: 'prod_DEVCYCLE_DOCS',
+      appId: 'JGOR5DGG3D',
+      apiKey: 'da4a01ced1f7fb787b8a39cc7a719adf', // Public API key: it is safe to commit it
+      indexName: 'DevCycle Documentation',
       contextualSearch: true,
     },
     navbar: {
@@ -426,19 +438,11 @@ const config = {
           label: 'Integrations',
         },
         {
-          type: 'dropdown',
-          label: 'CLI',
+          type: 'docSidebar',
+          sidebarId: 'cli_mcp',
           position: 'left',
-          items: [
-            {
-              label: 'Reference Docs',
-              to: '/cli/'
-            },
-            {
-              label: 'User Guides',
-              to: '/cli-guides/'
-            }
-          ]
+          collapse: 'false',
+          label: 'CLI / MCP',
         },
         {
           label: 'Best Practices',
@@ -450,18 +454,8 @@ const config = {
           position: 'left',
           items: [
             {
-              label: 'Calendar',
-              to: '/community/calendar',
-            },
-            {
               href: 'https://blog.devcycle.com',
               label: 'Blog',
-              target: '_blank',
-              rel: null,
-            },
-            {
-              href: 'https://discord.gg/8uEqSsRKy5',
-              label: 'Discord',
               target: '_blank',
               rel: null,
             },
@@ -482,18 +476,6 @@ const config = {
           position: 'right',
           className: 'header-signup-link',
           label: 'Sign Up',
-        },
-        {
-          href: 'https://discord.gg/8uEqSsRKy5',
-          position: 'right',
-          className: 'header-discord-link',
-          'aria-label': 'Discord',
-        },
-        {
-          href: '#',
-          position: 'right',
-          className: 'header-beamer-link',
-          'aria-label': 'Beamer',
         },
       ],
     },
@@ -519,10 +501,6 @@ const config = {
               label: 'Github',
               href: 'https://github.com/devcyclehq',
             },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/8uEqSsRKy5',
-            },
           ],
         },
         {
@@ -544,10 +522,6 @@ const config = {
             {
               label: 'Twitter',
               href: 'https://twitter.com/devcyclehq',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/8uEqSsRKy5',
             },
           ],
         },

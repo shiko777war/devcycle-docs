@@ -8,7 +8,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/roku-client-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/roku-client-sdk)
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 ## Initializing the SDK
 
@@ -51,7 +51,7 @@ sub init()
 end sub
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 The user object may specify a unqiue `user_id` for a given User. If the `user_id` is not specified, the User is considered to be anonymous and we will utilize the Device ID as a unique identifier.
 
@@ -71,14 +71,18 @@ The DevCycleClient can be built using the following methods:
 
 The DevCycleUser can be built using the following methods [DevCycleUser](https://github.com/DevCycleHQ/roku-client-sdk/blob/main/components/DevCycle/DevCycleUser.brs). Passing an empty string for the `user_id` will result in a thrown error. In order to create an anonymous user, omit passing a `user_id`.
 
-| Method            | Parameter | Description                                                                                                     |
-| ----------------- | --------- | --------------------------------------------------------------------------------------------------------------- |
-| user_id           | String    | Unique user ID                                                                                                  |
-| name              | String    | User's name                                                                                                     |
-| email             | String    | User's email                                                                                                    |
-| country           | String    | User's country                                                                                                  |
-| customData        | JSON      | Key/value map of properties to be used for targeting.                                                           |
-| privateCustomData | JSON      | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. |
+| Method            | Parameter | Description                                                                                                     | Auto-Populated |
+| ----------------- | --------- | --------------------------------------------------------------------------------------------------------------- | -------------- |
+| user_id           | String    | Unique user ID                                                                                                  | No             |
+| name              | String    | User's name                                                                                                     | No             |
+| email             | String    | User's email                                                                                                    | No             |
+| country           | String    | User's country                                                                                                  | No             |
+| appVersion        | String    | App version                                                                                                     | No             |
+| customData        | JSON      | Key/value map of properties to be used for targeting.                                                           | No             |
+| privateCustomData | JSON      | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. | No             |
+| platform          | String    | Platform/OS                                                                                                     | Yes            |
+| platformVersion   | String    | Platform/OS Version (Set to `1.0.0`)                                                                            | Yes            |
+| deviceModel       | String    | Device Build Model                                                                                              | Yes            |
 
 ## DevCycle Options
 

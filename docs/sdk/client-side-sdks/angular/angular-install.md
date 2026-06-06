@@ -9,6 +9,16 @@ sidebar_custom_props: { icon: material-symbols:install-desktop }
 [![Npm package version](https://badgen.net/npm/v/@devcycle/openfeature-angular-provider)](https://www.npmjs.com/package/@devcycle/openfeature-angular-provider)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/js-sdks.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/js-sdks)
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/angular.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 ## Requirements
 
 The OpenFeature Angular SDK is compatible Angular versions 16 and above.
@@ -17,13 +27,13 @@ The OpenFeature Angular SDK is compatible Angular versions 16 and above.
 
 To install the SDK, run the following command:
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 ### npm
 
 ```bash
 npm install --save @openfeature/angular-sdk @devcycle/openfeature-angular-provider
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 ### yarn
 

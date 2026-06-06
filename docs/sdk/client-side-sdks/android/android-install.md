@@ -9,6 +9,16 @@ sidebar_custom_props: { icon: material-symbols:install-desktop }
 [![Maven](https://badgen.net/maven/v/maven-central/com.devcycle/android-client-sdk)](https://search.maven.org/artifact/com.devcycle/android-client-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/android-client-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/DevCycleHQ/android-client-sdk)
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/android.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 ## Requirements
 
 This version of the DevCycle Android Client SDK supports a minimum Android API Version 23.
@@ -19,14 +29,14 @@ This version of the DevCycle Android Client SDK supports a minimum Android API V
 
 ## Installation
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 The SDK can be installed into your Android project by adding the following to _build.gradle_:
 
 ```yaml
 implementation("com.devcycle:android-client-sdk:+")
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 :::info
 

@@ -8,7 +8,7 @@ sidebar_custom_props: { icon: material-symbols:toggle-on }
 
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/roku-client-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/roku-client-sdk)
 
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 ## Using Variable Values
 
@@ -23,7 +23,7 @@ numValue = m.devcycleClient.getVariableValue('num_key', 4)
 jsonValue = m.devcycleClient.getVariableValue('json_key', {})
 ```
 
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 ## Grabbing All Features / Variables
 
@@ -100,7 +100,7 @@ event = {
 m.devcycleClient.track(event)
 ```
 
-The SDK will flush events every 10s or `flushEventsMS` specified in the options. To manually flush events, call:
+The SDK will flush events every 10s or `flushEventsIntervalMs` specified in the options. To manually flush events, call:
 
 ```javascript
 m.devcycleClient.flushEvents()
@@ -108,9 +108,9 @@ m.devcycleClient.flushEvents()
 
 ## EdgeDB
 
-EdgeDB allows you to save user data to our EdgeDB storage so that you don't have to pass in all the user data every time you identify a user. Read more about [EdgeDB](/platform/feature-flags/targeting/edgedb).
+EdgeDB allows you to save user data to our EdgeDB storage so that you don't have to pass in all the user data every time you identify a user.
 
-To get started, contact us at support@devcycle.com to enable EdgeDB for your project.
+To get started, enable EdgeDB on your project by following the guide [here](/platform/feature-flags/targeting/edgedb).
 
 Once you have EdgeDB enabled in your project, pass in the enableEdgeDB option to turn on EdgeDB mode for the SDK:
 

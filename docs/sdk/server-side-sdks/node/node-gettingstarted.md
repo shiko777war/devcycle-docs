@@ -9,7 +9,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 [![Npm package version](https://badgen.net/npm/v/@devcycle/nodejs-server-sdk)](https://www.npmjs.com/package/@devcycle/nodejs-server-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/js-sdks.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/js-sdks)
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 To use the DevCycle Server SDK in your project, import the `@devcycle/nodejs-server-sdk` package and
 call `initializeDevCycle` with your DevCycle SDK server key. You may optionally `await` for the client
@@ -24,7 +24,7 @@ const devcycleClient = await DevCycle.initializeDevCycle(
   process.env.DEVCYCLE_SERVER_SDK_KEY,
 ).onClientInitialized()
 ```
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 Typescript Example:
 
@@ -59,7 +59,7 @@ const devcycleClient = await DevCycle.initializeDevCycle(
 | enableEdgeDB                 | Boolean        | Enables the usage of EdgeDB for DevCycle that syncs User Data to DevCycle. <br />NOTE: This is only available with Cloud Bucketing.                                          |
 | configPollingIntervalMS      | Number         | Controls the polling interval in milliseconds to fetch new environment config changes, defaults to 10 seconds, minimum value is 1 second.                                    |
 | configPollingTimeoutMS       | Number         | Controls the request timeout to fetch new environment config changes, defaults to 5 seconds, must be less than the configPollingIntervalMS value, minimum value is 1 second. |
-| eventFlushIntervalMS         | Number         | Controls the interval between flushing events to the DevCycle servers, defaults to 30 seconds.                                                                               |
+| eventFlushIntervalMS         | Number         | Controls the interval between flushing events to the DevCycle servers, defaults to 10 seconds.                                                                               |
 | disableAutomaticEventLogging | Boolean        | Disables logging of sdk generated events (e.g. aggVariableEvaluated, aggVariableDefaulted) to DevCycle.                                                                      |
 | disableCustomEventLogging    | Boolean        | Disables logging of custom events, from `track()` method, and user data to DevCycle.                                                                                         |
 | flushEventQueueSize          | Number         | Controls the maximum size the event queue can grow to until a flush is forced. Defaults to `1000`.                                                                           |

@@ -9,7 +9,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 [![Maven](https://badgen.net/maven/v/maven-central/com.devcycle/android-client-sdk)](https://search.maven.org/artifact/com.devcycle/android-client-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/android-client-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/DevCycleHQ/android-client-sdk)
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 ## Initializing the SDK
 
@@ -42,7 +42,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ### _Java example:_
 
@@ -90,15 +90,19 @@ A DevCycleUser can be built using the following methods:
 
 [DevCycleUser Builder class](https://github.com/DevCycleHQ/android-client-sdk/blob/main/android-client-sdk/src/main/java/com/devcycle/sdk/android/model/DevCycleUser.kt#L15)
 
-| Method                | Parameter          | Description                                                                                                     |
-| --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------- |
-| withUserId            | String             | Unique user ID                                                                                                  |
-| withIsAnonymous       | Boolean            | Boolean to indicate if the user is anonymous                                                                    |
-| withEmail             | String             | User's email                                                                                                    |
-| withName              | String             | User's name                                                                                                     |
-| withCountry           | String             | User's country                                                                                                  |
-| withCustomData        | `Map<String, Any>` | Key/value map of properties to be used for targeting                                                            |
-| withPrivateCustomData | `Map<String, Any>` | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. |
+| Method                | Parameter          | Description                                                                                                     | Auto-Populated |
+| --------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------- | -------------- |
+| withUserId            | String             | Unique user ID                                                                                                  | No             |
+| withIsAnonymous       | Boolean            | Boolean to indicate if the user is anonymous                                                                    | No             |
+| withEmail             | String             | User's email                                                                                                    | No             |
+| withName              | String             | User's name                                                                                                     | No             |
+| withCountry           | String             | User's country                                                                                                  | No             |
+| withCustomData        | `Map<String, Any>` | Key/value map of properties to be used for targeting                                                            | No             |
+| withPrivateCustomData | `Map<String, Any>` | Key/value map of properties to be used for targeting. Private properties will not be included in event logging. | No             |
+| appVersion            | String             | App version                                                                                                     | Yes            |
+| platform              | String             | Platform/OS                                                                                                     | Yes            |
+| platformVersion       | String             | Platform/OS Version                                                                                             | Yes            |
+| deviceModel           | String             | Device Build Model (ex: SM-S928U)                                                                               | Yes            |
 
 ## DevCycleOptions Builder
 
@@ -115,8 +119,8 @@ The SDK exposes various initialization options which can be used by passing a `D
 | configCacheTTL               | Long      | 2592000000 | The maximum allowed age of a cached config in milliseconds, defaults to 30 days                                 |
 | disableConfigCache           | Boolean   | false     | Disable the use of cached configs                                                                              |
 | disableRealtimeUpdates       | Boolean   | false     | Disable Realtime Updates                                                                                       |
-| apiProxyURL                  | String    | null      | Allows the SDK to communicate with a proxy of DevCycle Client SDK API.                                         |
-| eventsApiProxyURL            | String    | null      | Allows the SDK to communicate with a proxy of DevCycle Events API.                                             |
+| apiProxyUrl                  | String    | null      | Allows the SDK to communicate with a proxy of DevCycle Client SDK API.                                         |
+| eventsApiProxyUrl            | String    | null      | Allows the SDK to communicate with a proxy of DevCycle Events API.                                             |
 
 ## Notifying when DevCycle features are available
 

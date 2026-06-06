@@ -15,13 +15,23 @@ DevCycle provides a Javascript implementation of the OpenFeature Web Provider in
 [![Npm package version](https://badgen.net/npm/v/@devcycle/openfeature-web-provider)](https://www.npmjs.com/package/@devcycle/openfeature-web-provider)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/js-sdks.svg?style=social&label=Star&maxAge=2592000)](https://github.com/DevCycleHQ/js-sdks/tree/main/examples/openfeature-web)
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/javascript-openfeature.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 ## Usage
 
 ### Installation
 
 Install the OpenFeature Web SDK and DevCycle Web Provider:
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 #### NPM
 
@@ -29,7 +39,7 @@ Install the OpenFeature Web SDK and DevCycle Web Provider:
 npm install --save @devcycle/openfeature-web-provider
 ```
 
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 #### Yarn
 
@@ -41,7 +51,7 @@ yarn add @openfeature/web-sdk @openfeature/core @devcycle/openfeature-web-provid
 
 ### Getting Started
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 Initialize the DevCycleProvider and set it as the provider for OpenFeature,
 which will initialize the DevCycle JS Client SDK internally:
@@ -64,9 +74,9 @@ await OpenFeature.setProviderAndWait(devcycleProvider)
 const openFeatureClient = OpenFeature.getClient()
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 Use a Variable value by passing the Variable key and default value to one of the OpenFeature flag evaluation methods
 
@@ -75,7 +85,7 @@ Use a Variable value by passing the Variable key and default value to one of the
 const boolFlag = openFeatureClient.getBooleanValue('boolean-flag', false)
 ```
 
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 ### Tracking Events
 
@@ -103,10 +113,10 @@ const devcycleProvider = new DevCycleProvider('<DEVCYCLE_CLIENT_SDK_KEY>', optio
 await OpenFeature.setProviderAndWait(devcycleProvider)
 ```
 
-### Required TargetingKey
+### TargetingKey or user_id
 
-For DevCycle SDK to work we require either a `targetingKey` or `user_id` to be set on the OpenFeature context.
-This is used to identify the user as the `user_id` for a `DevCycleUser` in DevCycle.
+DevCycle recommends setting a `targetingKey` or `user_id` on the OpenFeature context to identify the user.
+If neither is set, the provider initializes an anonymous user and evaluates flags for that anonymous user.
 
 ### Context properties to DevCycleUser
 

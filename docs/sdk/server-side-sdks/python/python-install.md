@@ -9,7 +9,19 @@ sidebar_custom_props: { icon: material-symbols:install-desktop }
 [![PyPI](https://badgen.net/pypi/v/devcycle-python-server-sdk)](https://pypi.org/project/devcycle-python-server-sdk/)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/python-server-sdk.svg?style=social&label=Star&maxAge=2592000)](https://github.com/DevCycleHQ/python-server-sdk)
 
-[//]: # (wizard-install-start)
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/python.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
+[//]: # 'wizard-install-start'
+
+## PIP Install
 
 The DevCycle Python Server SDK requires For Python 3.8 and above.
 
@@ -24,4 +36,4 @@ Then import the package:
 ```python
 import devcycle_python_sdk
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'

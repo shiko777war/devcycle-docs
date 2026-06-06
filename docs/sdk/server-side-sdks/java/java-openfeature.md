@@ -8,6 +8,16 @@ sidebar_custom_props: { icon: material-symbols:toggle-off }
 
 # OpenFeature Provider
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/java-openfeature.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 OpenFeature is an open standard that provides a vendor-agnostic, community-driven API for feature flagging that works with DevCycle.
 
 DevCycle provides a Java implementation of the [OpenFeature](https://openfeature.dev/) Provider interface, if you prefer to use the OpenFeature API.
@@ -18,7 +28,7 @@ DevCycle provides a Java implementation of the [OpenFeature](https://openfeature
 ## Installation
 The Provider implementation is built into the Java SDK.
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 ### Maven
 
@@ -46,10 +56,10 @@ Alternatively you can use the SDK in your Gradle project by adding the following
 ```yaml
 implementation("com.devcycle:java-server-sdk:+")
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 ## Usage
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 Start by creating and configuring the `DevCycleLocalClient`. Once the DevCycle client is configured, call the `getOpenFeatureProvider()` function to obtain the OpenFeature provider and set it into the OpenFeature API.
 
@@ -74,25 +84,50 @@ public class OpenFeatureExample {
 }
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ## Evaluate a Variable
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 Use a Variable value by passing the Variable key, default value, and EvaluationContext to one of the OpenFeature flag evaluation methods.
 
 ```java
-// Retrieve a boolean flag from the OpenFeature client
-Boolean variableValue = openFeatureClient.getBooleanValue("boolean-flag", false, new MutableContext("user-1234"));
+MutableContext context = new MutableContext("user-1234");
+
+// Retrieve a boolean flag value
+Boolean boolValue = openFeatureClient.getBooleanValue("boolean-flag", false, context);
+
+// Retrieve a string flag value
+String stringValue = openFeatureClient.getStringValue("string-flag", "default", context);
+
+// Retrieve an integer flag value
+Integer intValue = openFeatureClient.getIntegerValue("integer-flag", 0, context);
+
+// Retrieve a double flag value
+Double doubleValue = openFeatureClient.getDoubleValue("double-flag", 0.0, context);
+
+// Retrieve a json flag value
+Map<String,Object> defaultJsonData = new LinkedHashMap<>();
+defaultJsonData.put("default", "value");
+Value jsonResult = openFeatureClient.getObjectValue("json-flag", new Value(Structure.mapToStructure(defaultJsonData)), context);
+
+// Use the returned values in your application logic
+if (boolValue) {
+    // Feature is enabled
+    System.out.println("Feature is enabled! String value: " + stringValue);
+} else {
+    // Feature is disabled, default value was returned
+    System.out.println("Feature is disabled");
+}
 ```
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 **NOTE: use `DevCycleCloudClient` \ `DevCycleCloudOptions` for Cloud Bucketing mode.**
 
 ### Required Targeting Key
 
-For DevCycle SDK to work we require either a `targeting key` or `user_id` attribute to be set on the OpenFeature context.
-This value is used to identify the user as the `user_id` property for a `DevCycleUser` in DevCycle.
+The DevCycle provider requires either a `targetingKey` or `user_id` to be set on the OpenFeature context.
+This is used to identify the user as the `user_id` for a `DevCycleUser` in DevCycle.
 
 ### Mapping Context Properties to DevCycleUser
 
@@ -130,21 +165,27 @@ The OpenFeature spec for JSON flags allows for any type of valid JSON value to b
 For example the following are all valid default value types to use with OpenFeature:
 
 ```java
-// Invalid JSON values for the DevCycle SDK, will return defaults
-openFeatureClient.getObjectValue("json-flag", new Value(new ArrayList<String>(Arrays.asList("value1", "value2"))));
-openFeatureClient.getObjectValue("json-flag", new Value(610));
-openFeatureClient.getObjectValue("json-flag", new Value(false));
-openFeatureClient.getObjectValue("json-flag", new Value("string"));
-openFeatureClient.getObjectValue("json-flag", new Value());
+MutableContext context = new MutableContext("user-1234");
+
+// Invalid JSON values for the DevCycle SDK, will return the default value with a TYPE_MISMATCH error
+Value listResult = openFeatureClient.getObjectValue("json-flag", new Value(new ArrayList<String>(Arrays.asList("value1", "value2"))), context);
+Value intResult = openFeatureClient.getObjectValue("json-flag", new Value(610), context);
+Value boolResult = openFeatureClient.getObjectValue("json-flag", new Value(false), context);
+Value stringResult = openFeatureClient.getObjectValue("json-flag", new Value("string"), context);
+Value nullResult = openFeatureClient.getObjectValue("json-flag", new Value(), context);
 ```
 
 However, these are not valid types for the DevCycle SDK, the DevCycle SDK only supports JSON Objects (as `Map<String,Object>`):
 
 ```java
+MutableContext context = new MutableContext("user-1234");
 
 Map<String,Object> defaultJsonData = new LinkedHashMap<>();
 defaultJsonData.put("default", "value");
-openFeatureClient.getObjectValue("json-flag", new Value(Structure.mapToStructure(defaultJsonData)));
+Value jsonResult = openFeatureClient.getObjectValue("json-flag", new Value(Structure.mapToStructure(defaultJsonData)), context);
+
+// Convert the returned Value back to a Map<String, Object>
+Map<String, Object> jsonMap = jsonResult.asStructure().asObjectMap();
 ```
 
-This is enforced both for both the flag values and the default values supplied to the `getObjectValue()` method. Invalid types will trigger a `dev.openfeature.sdk.exceptions.TypeMismatchError` exception.
+This is enforced for both the flag values and the default values supplied to the `getObjectValue()` method. Invalid types will return the default value with a `TYPE_MISMATCH` error code and an `ERROR` reason in the evaluation details.

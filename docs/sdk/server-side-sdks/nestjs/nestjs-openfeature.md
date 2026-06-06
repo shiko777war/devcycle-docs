@@ -8,6 +8,16 @@ sidebar_custom_props: { icon: material-symbols:toggle-off }
 
 # OpenFeature NestJS Provider
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/nestjs-openfeature.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 [OpenFeature](https://openfeature.dev/) is an open standard that provides a vendor-agnostic, community-driven API for feature flagging that works with DevCycle.
 
 DevCycle provides a NodeJS implementation of the [OpenFeature](https://openfeature.dev/) Provider interface for the [OpenFeature NestJS SDK](https://openfeature.dev/docs/reference/technologies/server/javascript/nestjs/) using the `DevCycleProvider` class.
@@ -20,13 +30,13 @@ Install the DevCycle NodeJS Server SDK which includes the OpenFeature Server SDK
 
 #### NPM
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 ```bash
 npm install --save @devcycle/openfeature-nestjs-provider @openfeature/nestjs-sdk
 ```
 
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 #### Yarn
 
@@ -36,7 +46,7 @@ yarn add @devcycle/openfeature-nestjs-provider @openfeature/nestjs-sdk
 
 ### Getting Started
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 Create the `DevCycleProvider` and set it as the provider for OpenFeature NestJS SDK:
 
@@ -73,38 +83,36 @@ export class AppModule implements OnModuleInit {
 }
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ### Evaluate a Variable
 
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 To use the OpenFeature NestJS SDK in a service first inject the OpenFeatureClient into the service.
 Then use a Variable value by creating the EvaluationContext, and pass the Variable key, default value, and EvaluationContext to one of the OpenFeature flag evaluation methods.
 
 ```typescript
-import { Injectable, Inject } from '@nestjs/common';
-import { OpenFeatureClient, Client } from '@openfeature/nestjs-sdk';
+import { Injectable, Inject } from '@nestjs/common'
+import { OpenFeatureClient, Client } from '@openfeature/nestjs-sdk'
 
-const SERVICE_USER = { user_id: 'example-service' };
+const SERVICE_USER = { user_id: 'example-service' }
 
 @Injectable()
 export class ExampleService {
-  constructor(
-    @OpenFeatureClient() private ofClient: Client,
-  ) {}
+  constructor(@OpenFeatureClient() private ofClient: Client) {}
 
   async testFlag() {
     const testFlag = await this.ofClient.getBooleanValue(
       'test-flag',
       false,
       SERVICE_USER,
-    );
+    )
   }
 }
 ```
 
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 ### Tracking Events
 
@@ -142,7 +150,7 @@ const allFeatures = devcycleProvider.devcycleClient.allFeatures(dvcUser)
 
 ### Required TargetingKey
 
-For DevCycle SDK to work we require either a `targetingKey` or `user_id` to be set on the OpenFeature context.
+The DevCycle provider requires either a `targetingKey` or `user_id` to be set on the OpenFeature context.
 This is used to identify the user as the `user_id` for a `DevCycleUser` in DevCycle.
 
 ### Context properties to DevCycleUser

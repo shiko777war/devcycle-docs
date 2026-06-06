@@ -8,6 +8,16 @@ sidebar_custom_props: { icon: material-symbols:toggle-off }
 
 # OpenFeature Provider
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import PromptContent from '!!raw-loader!@site/static/ai-prompts/php-openfeature.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={PromptContent} />
+
 OpenFeature is an open standard that provides a vendor-agnostic, community-driven API for feature flagging that works
 with DevCycle.
 
@@ -21,7 +31,7 @@ to use the OpenFeature API.
 The OpenFeature Provider is included in the DevCycle SDK for PHP natively. It's compatible with both Cloud, and SDK
 proxy modes.
 
-[//]: # (wizard-install-start)
+[//]: # 'wizard-install-start'
 
 To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
 
@@ -40,11 +50,11 @@ Once the composer install is complete, a `vendor` folder should be generated at 
 ```php
 require_once(__DIR__ . '/vendor/autoload.php');
 ```
-[//]: # (wizard-install-end)
+[//]: # 'wizard-install-end'
 
 
 ### Getting Started
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 Initialize the DevCycle SDK and set the DevCycleProvider as the provider for OpenFeature:
 
@@ -58,10 +68,10 @@ $api = OpenFeatureAPI::getInstance();
 $api->setProvider($devCycleClient->getOpenFeatureProvider());
 $openFeatureClient = $api->getClient();
 ```
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 ### Evaluate a Variable
-[//]: # (wizard-evaluate-start)
+[//]: # 'wizard-evaluate-start'
 
 Use a Variable value by setting the EvaluationContext, then passing the Variable key and default value to one of the OpenFeature flag evaluation methods.
 
@@ -76,12 +86,12 @@ $openfeature_context = new EvaluationContext(attributes: $user_attributes);
 $flag_value = $openfeature_client->getStringValue("string-flag", "default", $openfeature_context);
 
 ```
-[//]: # (wizard-evaluate-end)
+[//]: # 'wizard-evaluate-end'
 
 
 ### Required TargetingKey
 
-For DevCycle SDK to work we require either a `targetingKey` or `user_id` to be set on the OpenFeature context.
+The DevCycle provider requires either a `targetingKey` or `user_id` to be set on the OpenFeature context.
 This is used to identify the user as the `user_id` for a `DevCycleUser` in DevCycle. Setting the `user_id` property
 will take priority over `targetingKey`.
 

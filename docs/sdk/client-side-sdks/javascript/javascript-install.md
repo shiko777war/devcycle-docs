@@ -9,8 +9,19 @@ sidebar_custom_props: { icon: material-symbols:install-desktop }
 [![Npm package version](https://badgen.net/npm/v/@devcycle/js-client-sdk)](https://www.npmjs.com/package/@devcycle/js-client-sdk)
 [![GitHub](https://img.shields.io/github/stars/devcyclehq/js-sdks.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devcyclehq/js-sdks)
 
+## AI-Powered Install
+
+import MCPInstall from '@site/docs/_partials/mcpInstall.mdx'
+import AIPromptCopyButton from '@site/src/components/AIPromptCopyButton'
+import JavaScriptPrompt from '!!raw-loader!@site/static/ai-prompts/javascript.md'
+
+<MCPInstall />
+
+<AIPromptCopyButton promptContent={JavaScriptPrompt} />
+
 ## NPM Module
-[//]: # (wizard-install-start)
+
+[//]: # 'wizard-install-start'
 
 The recommended way to include the JS SDK is by bundling it with the rest of your Javascript or Typescript application code using our NPM Module.
 
@@ -20,8 +31,7 @@ The JS SDK library can be found on NPM. To get started, install the JS SDK using
 npm install --save @devcycle/js-client-sdk
 ```
 
-[//]: # (wizard-install-end)
-
+[//]: # 'wizard-install-end'
 
 To use the JS SDK in your project, import the `initializeDevCycle` function:
 

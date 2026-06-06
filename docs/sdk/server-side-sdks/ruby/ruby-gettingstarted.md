@@ -16,7 +16,7 @@ Please note; the default mode is to use Local Bucketing - to use cloud bucketing
 The last argument to `DevCycle::Client.new` tells the sdk whether you want to wait for initialization - meaning that the method will block
 until the first config is fetched and set successfully or an unrecoverable error occurs during initialization.
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 ```ruby
 # Load the gem
@@ -35,7 +35,8 @@ rescue DevCycle::ApiError => e
 end
 
 ```
-[//]: # (wizard-initialize-end)
+
+[//]: # 'wizard-initialize-end'
 
 ## Initializing the SDK in a Rails App
 
@@ -101,7 +102,7 @@ user = DevCycle::User.new({
 | DevCycle Option                 | Type           | Description                                                                                                                                                                  |
 | ------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | enable_cloud_bucketing          | Boolean        | Switches the SDK to use Cloud Bucketing (via the DevCycle Bucketing API) instead of Local Bucketing.                                                                         |
-| event_flush_interval_ms         | Int            | Controls the interval between flushing events to the DevCycle servers, defaults to 30 seconds.                                                                               |
+| event_flush_interval_ms         | Int            | Controls the interval between flushing events to the DevCycle servers, defaults to 10 seconds.                                                                               |
 | disable_custom_event_logging    | Boolean        | Disables logging of custom events, from `track()` method, and user data to DevCycle.                                                                                         |
 | disable_automatic_event_logging | Boolean        | Disables logging of sdk generated events (e.g. aggVariableEvaluated, aggVariableDefaulted) to DevCycle.                                                                      |
 | config_polling_interval_ms      | Int            | Controls the polling interval in milliseconds to fetch new environment config changes, defaults to 10 seconds, minimum value is 1 second.                                    |

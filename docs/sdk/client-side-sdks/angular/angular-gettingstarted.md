@@ -11,7 +11,7 @@ sidebar_custom_props: { icon: material-symbols:rocket }
 
 ## Installation
 
-[//]: # (wizard-initialize-start)
+[//]: # 'wizard-initialize-start'
 
 To install the Angular OpenFeature SDK into your application, you need to import the `OpenFeatureModule` as part of your root module. You will need to configure the `DevCycleAngularProvider` with your DevCycle Client SDK Key and any other options you need, and set the provider as part of the `OpenFeatureModule.forRoot()` method.
 
@@ -26,7 +26,7 @@ const devCycleProvider = new DevCycleAngularProvider(
   { /* DevCycle Options */ }
 );
 
-// A `targetingKey` or `user_id` is required to initialize the DevCycle Provider.
+// Provide a `targetingKey` or `user_id` to avoid an anonymous user.
 OpenFeature.setContext({
   targetingKey: "user123"
 });
@@ -44,7 +44,7 @@ OpenFeature.setContext({
 export class AppModule {}
 ```
 
-[//]: # (wizard-initialize-end)
+[//]: # 'wizard-initialize-end'
 
 :::info
 
@@ -52,17 +52,18 @@ It's best to initialize DevCycle in your root module, so that it can be initiali
 
 :::
 
-### Required TargetingKey
+### TargetingKey or user_id
 
-For DevCycle SDK to work we require either a `targetingKey` or `user_id` to be set on the OpenFeature context. This is used to identify the user as the user_id for a DevCycleUser in DevCycle.
+DevCycle recommends setting a `targetingKey` or `user_id` on the OpenFeature context to identify the user.
+If neither is set, the provider initializes an anonymous user and evaluates flags for that anonymous user.
 
 
 ### Context properties to DevCycleUser
 
-The provider will automatically translate known `DevCycleUser` properties from the OpenFeature context to the `DevCycleUser` object.
-[DevCycleUser TypeScript Interface](https://github.com/DevCycleHQ/js-sdks/blob/main/sdk/nodejs/src/models/user.ts#L16)
+The provider will automatically translate **known** `DevCycleUser` properties from the OpenFeature context to the `DevCycleUser` object.
+[DevCycleUser TypeScript Interface](https://github.com/DevCycleHQ/js-sdks/blob/main/sdk/nodejs/src/models/populatedUserHelpers.ts)
 
-For example all these properties will be set on the `DevCycleUser`:
+For example all these properties can be set on the `DevCycleUser`:
 
 ```typescript
 openFeatureClient.setContext({
@@ -78,19 +79,27 @@ openFeatureClient.setContext({
 })
 ```
 
-Context properties that are not known `DevCycleUser` properties will be automatically
-added to the `customData` property of the `DevCycleUser`.
+The following properties will **automatically** be populated by the SDK so you won't need to manually set them:
+
+| Property          | Type    | Description            |
+| ----------------- | ------- | ---------------------- |
+| platform          | String  | Platform/OS            |
+| platformVersion   | String  | Platform/OS Version    |
+| deviceModel       | String  | User Agent             |
+
+Context properties that are **not known** `DevCycleUser` properties will be added as `customData` properties of the `DevCycleUser`.
 
 ### Context Limitations
 
 DevCycle only supports flat JSON Object properties used in the Context. Non-flat properties will be ignored.
 
-For example `obj` will be ignored:
+For example `name` and `obj` will be ignored:
 
 ```typescript
 openFeatureClient.setContext({
   user_id: 'user_id',
-  obj: { key: 'value' },
+  name: { key: 'value' }
+  customData: {obj: { key: 'value' }},
 })
 ```
 
